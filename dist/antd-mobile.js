@@ -21374,7 +21374,10 @@ function alert(title, message) {
         if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
             return;
         }
-        var pNode = Object(__WEBPACK_IMPORTED_MODULE_2__util_closest__["a" /* default */])(e.target, '.' + prefixCls);
+        var pNode = Object(__WEBPACK_IMPORTED_MODULE_2__util_closest__["a" /* default */])(e.target, '.' + prefixCls + '-footer');
+        if (pNode == null) {
+            pNode = Object(__WEBPACK_IMPORTED_MODULE_2__util_closest__["a" /* default */])(e.target, '.' + prefixCls + '-content');
+        }
         if (!pNode) {
             e.preventDefault();
         }

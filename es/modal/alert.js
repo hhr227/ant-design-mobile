@@ -46,7 +46,10 @@ export default function alert(title, message) {
         if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
             return;
         }
-        var pNode = closest(e.target, '.' + prefixCls);
+        var pNode = closest(e.target, '.' + prefixCls + '-footer');
+        if (pNode == null) {
+            pNode = closest(e.target, '.' + prefixCls + '-content');
+        }
         if (!pNode) {
             e.preventDefault();
         }

@@ -15,7 +15,7 @@ export default function alert(
   if (!title && !message) {
     // console.log('Must specify either an alert title, or message, or both');
     return {
-      close: () => {},
+      close: () => { },
     };
   }
 
@@ -31,7 +31,7 @@ export default function alert(
 
   const footer = actions.map((button: Action<React.CSSProperties>) => {
     // tslint:disable-next-line:only-arrow-functions
-    const orginPress = button.onPress || function() {};
+    const orginPress = button.onPress || function () { };
     button.onPress = () => {
       if (closed) {
         return;
@@ -44,7 +44,7 @@ export default function alert(
             closed = true;
             close();
           })
-          .catch(() => {});
+          .catch(() => { });
       } else {
         closed = true;
         close();
@@ -59,7 +59,7 @@ export default function alert(
     if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
       return;
     }
-    const pNode = closest(e.target as Element, `.${prefixCls}-footer`);
+    const pNode = closest(e.currentTarget as Element, `.${prefixCls}-footer`);
     if (!pNode) {
       e.preventDefault();
     }

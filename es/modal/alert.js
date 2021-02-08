@@ -46,7 +46,7 @@ export default function alert(title, message) {
         if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
             return;
         }
-        var pNode = closest(e.currentTarget, '.' + prefixCls + '-footer');
+        var pNode = closest(e.target, '.' + prefixCls);
         if (!pNode) {
             e.preventDefault();
         }

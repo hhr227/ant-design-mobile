@@ -59,7 +59,7 @@ export default function alert(
     if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
       return;
     }
-    const pNode = closest(e.currentTarget as Element, `.${prefixCls}-footer`);
+    const pNode = closest(e.target as Element, `.${prefixCls}`);
     if (!pNode) {
       e.preventDefault();
     }

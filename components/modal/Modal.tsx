@@ -9,6 +9,7 @@ export abstract class ModalComponent<P, S> extends React.Component<P, S> {
     message: React.ReactNode,
     actions?: Action<React.CSSProperties>[],
     platform?: string,
+    closable?: boolean,
   ) => { close: () => void };
 
   static prompt: (
@@ -47,7 +48,7 @@ export default class Modal extends ModalComponent<ModalProps, any> {
     animationType: 'slide-down',
     animated: true,
     style: {},
-    onShow() {},
+    onShow() { },
     footer: [],
     closable: false,
     operation: false,
@@ -110,15 +111,14 @@ export default class Modal extends ModalComponent<ModalProps, any> {
     } = this.props;
 
     const btnGroupClass = classnames(
-      `${prefixCls}-button-group-${
-        footer.length === 2 && !operation ? 'h' : 'v'
+      `${prefixCls}-button-group-${footer.length === 2 && !operation ? 'h' : 'v'
       }`,
       `${prefixCls}-button-group-${operation ? 'operation' : 'normal'}`,
     );
     const footerDom = footer.length ? (
       <div className={btnGroupClass} role="group">
         {footer.map((button, i) =>
-        // tslint:disable-next-line:jsx-no-multiline-js
+          // tslint:disable-next-line:jsx-no-multiline-js
           this.renderFooterButton(button, prefixCls, i),
         )}
       </div>

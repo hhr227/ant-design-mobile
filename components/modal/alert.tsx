@@ -9,6 +9,7 @@ export default function alert(
   message: React.ReactNode,
   actions = [{ text: '确定' }],
   platform = 'ios',
+  closable = true,
 ) {
   let closed = false;
 
@@ -38,16 +39,18 @@ export default function alert(
       }
 
       const res = orginPress();
-      if (res && res.then) {
-        res
-          .then(() => {
-            closed = true;
-            close();
-          })
-          .catch(() => { });
-      } else {
-        closed = true;
-        close();
+      if (closable) {
+        if (res && res.then) {
+          res
+            .then(() => {
+              closed = true;
+              close();
+            })
+            .catch(() => { });
+        } else {
+          closed = true;
+          close();
+        }
       }
     };
     return button;

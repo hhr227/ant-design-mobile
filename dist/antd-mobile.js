@@ -21333,6 +21333,7 @@ __WEBPACK_IMPORTED_MODULE_1__Modal__["a" /* default */].operation = __WEBPACK_IM
 function alert(title, message) {
     var actions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [{ text: '确定' }];
     var platform = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'ios';
+    var closable = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
 
     var closed = false;
     if (!title && !message) {
@@ -21357,14 +21358,16 @@ function alert(title, message) {
                 return;
             }
             var res = orginPress();
-            if (res && res.then) {
-                res.then(function () {
+            if (closable) {
+                if (res && res.then) {
+                    res.then(function () {
+                        closed = true;
+                        close();
+                    })['catch'](function () {});
+                } else {
                     closed = true;
                     close();
-                })['catch'](function () {});
-            } else {
-                closed = true;
-                close();
+                }
             }
         };
         return button;
